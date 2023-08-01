@@ -1,6 +1,7 @@
 import React from "react";
 import Router from "./Router";
 import { createGlobalStyle } from "styled-components";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/
@@ -72,6 +73,7 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <>
+      <ReactQueryDevtools />
       <GlobalStyle />
       <Router />
     </>
