@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 
 // Components
 const Container = styled.div`
@@ -62,9 +63,14 @@ interface ICoinItem {
 }
 
 function Coins() {
-  const { isLoading, data } = useQuery<ICoinItem[]>(["allCoins"], fetchCoins);
+  const { isLoading, data } = useQuery<ICoinItem[]>(["allCoins"], fetchCoins, {
+    refetchInterval: 10000,
+  });
   return (
     <Container>
+      <Helmet>
+        <title>코인</title>
+      </Helmet>
       <Header>
         <Title>코인</Title>
       </Header>

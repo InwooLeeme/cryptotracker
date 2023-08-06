@@ -12,6 +12,7 @@ import Price from "./Price";
 import Chart from "./Chart";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCoinInfo, fetchCoinPrice } from "../api";
+import { Helmet } from "react-helmet";
 
 // Components
 const Container = styled.div`
@@ -138,10 +139,17 @@ function Coin() {
   const loading = infoLoading || priceLoading;
   return (
     <Container>
-      <Header>
-        <Title>
+      <Helmet>
+        <title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
-        </Title>
+        </title>
+      </Helmet>
+      <Header>
+        <Link to={"/"}>
+          <Title>
+            {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+          </Title>
+        </Link>
       </Header>
       <Tabs>
         <Tab isActive={priceMatch !== null}>
@@ -156,7 +164,7 @@ function Coin() {
           <Price />
         </Route>
         <Route path={`/:coinId/chart`}>
-          <Chart />
+          <Chart coinId={coinId} />
         </Route>
       </Switch>
     </Container>
