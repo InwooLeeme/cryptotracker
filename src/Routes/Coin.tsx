@@ -58,6 +58,7 @@ const CoinInfo = styled.div`
   border-radius: 0.7rem;
   box-shadow: rgba(10, 10, 10, 0.1) 0px 0.2rem 0.5rem;
   padding: 1rem;
+  margin: 1rem 0;
 `;
 
 const CoinItem = styled.div`
@@ -169,7 +170,7 @@ function Coin() {
     () => fetchCoinPrice(coinId)
   );
 
-  console.log(priceData);
+  //console.log(priceData);
 
   const loading = infoLoading || priceLoading;
   return (
@@ -188,9 +189,31 @@ function Coin() {
         </Title>
       </Header>
       <CoinInfo>
-        <CoinItem>{priceData?.name}</CoinItem>
-        <CoinItem>{priceData?.rank}</CoinItem>
-        <CoinItem>{priceData?.quotes.USD.price}</CoinItem>
+        <CoinItem>
+          <span>티커</span>
+          <span>{priceData?.name}</span>
+        </CoinItem>
+        <CoinItem>
+          <span>순위</span>
+          <span>{priceData?.rank}</span>
+        </CoinItem>
+        <CoinItem>
+          <span>현재 값</span>
+          <span>{priceData?.quotes.USD.price.toFixed(3)}</span>
+        </CoinItem>
+      </CoinInfo>
+      <CoinInfo>
+        <CoinItem>
+          <span>현재 공급량</span>
+          <span>{priceData?.total_supply}</span>
+        </CoinItem>
+        <CoinItem>
+          <span>최대 공급량</span>
+          <span>{priceData?.max_supply}</span>
+        </CoinItem>
+      </CoinInfo>
+      <CoinInfo>
+        <span>{infoData?.description}</span>
       </CoinInfo>
       <Tabs>
         <Tab isActive={priceMatch !== null}>
