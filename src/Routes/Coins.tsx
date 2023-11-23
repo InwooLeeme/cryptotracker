@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet";
 // Components
 const Container = styled.div`
   padding: 0 20px;
-  max-width: 720px;
+  max-width: 540px;
   margin: 0 auto;
 `;
 
@@ -24,6 +24,7 @@ const Header = styled.header`
 const Title = styled.h1`
   color: ${(props) => props.theme.accentColor};
   font-size: 48px;
+  font-weight: 600;
 `;
 
 const CoinList = styled.ul``;

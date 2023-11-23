@@ -49,6 +49,25 @@ const Title = styled.h1`
   font-size: 48px;
 `;
 
+const CoinInfo = styled.div`
+  width: 100%;
+  background-color: ${(props) => props.theme.cardColor};
+  color: ${(props) => props.theme.txtColor};
+  display: flex;
+  justify-content: space-around;
+  border-radius: 0.7rem;
+  box-shadow: rgba(10, 10, 10, 0.1) 0px 0.2rem 0.5rem;
+  padding: 1rem;
+`;
+
+const CoinItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+`;
+
 const Loader = styled.div``;
 
 const Tabs = styled.div`
@@ -61,13 +80,14 @@ const Tabs = styled.div`
 const Tab = styled.span<{ isActive: boolean }>`
   text-align: center;
   text-transform: uppercase;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.cardColor};
   padding: 7px 0px;
   border-radius: 10px;
   a {
     display: block;
   }
-  color: ${(props) => (props.isActive ? props.theme.accentColor : "white")};
+  color: ${(props) =>
+    props.isActive ? props.theme.accentColor : props.theme.txtColor};
 `;
 
 // interface
@@ -149,6 +169,8 @@ function Coin() {
     () => fetchCoinPrice(coinId)
   );
 
+  console.log(priceData);
+
   const loading = infoLoading || priceLoading;
   return (
     <Container>
@@ -165,6 +187,11 @@ function Coin() {
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
       </Header>
+      <CoinInfo>
+        <CoinItem>{priceData?.name}</CoinItem>
+        <CoinItem>{priceData?.rank}</CoinItem>
+        <CoinItem>{priceData?.quotes.USD.price}</CoinItem>
+      </CoinInfo>
       <Tabs>
         <Tab isActive={priceMatch !== null}>
           <Link to={`/${coinId}/price`}>Price</Link>

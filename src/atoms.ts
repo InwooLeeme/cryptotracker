@@ -1,6 +1,11 @@
 import { atom } from "recoil";
 
-export const isDarkAtom = atom({
-  key: "isDark",
-  default: false,
+export enum ThemeFlag {
+  light,
+  dark,
+}
+
+export const themeState = atom<ThemeFlag>({
+  key: "ThemeState",
+  default: ThemeFlag.light,
 });
