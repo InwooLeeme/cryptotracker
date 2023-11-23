@@ -17,6 +17,8 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 8rem;
+  margin-bottom: 2rem;
 `;
 
 const Title = styled.h1`
@@ -32,10 +34,14 @@ const Coin = styled.li`
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 15px;
+  font-size: 24px;
+  display: flex;
   a {
     transition: color 0.2s ease-in-out;
-    display: block;
-    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
   }
   &:hover {
     color: ${(props) => props.theme.accentColor};
@@ -72,7 +78,7 @@ function Coins() {
         <title>코인</title>
       </Helmet>
       <Header>
-        <Title>코인</Title>
+        <Title>Cryptocurrencies</Title>
       </Header>
       <CoinList>
         {isLoading ? (
@@ -87,7 +93,7 @@ function Coins() {
                 }}
               >
                 <Image
-                  src={`https://cryptoicon-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
+                  src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
                 ></Image>
                 {coin.name} &rarr;
               </Link>

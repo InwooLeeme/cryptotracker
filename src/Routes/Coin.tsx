@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import {
   Link,
   Route,
@@ -13,20 +12,36 @@ import Chart from "./Chart";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCoinInfo, fetchCoinPrice } from "../api";
 import { Helmet } from "react-helmet";
+import { GoArrowLeft } from "react-icons/go";
 
 // Components
 const Container = styled.div`
   padding: 0 20px;
-  max-width: 720px;
+  max-width: 30rem;
   margin: 0 auto;
   color: white;
 `;
 
 const Header = styled.header`
-  height: 10vh;
+  height: 8rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  box-align: center;
+  a {
+    position: absolute;
+    left: 0px;
+    display: flex;
+    padding: 0.8rem;
+    box-align: center;
+    align-items: center;
+    svg {
+      width: 40px;
+      height: 40px;
+      color: ${(props) => props.theme.accentColor};
+    }
+  }
 `;
 
 const Title = styled.h1`
@@ -46,8 +61,6 @@ const Tabs = styled.div`
 const Tab = styled.span<{ isActive: boolean }>`
   text-align: center;
   text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 400;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 7px 0px;
   border-radius: 10px;
@@ -146,10 +159,11 @@ function Coin() {
       </Helmet>
       <Header>
         <Link to={"/"}>
-          <Title>
-            {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
-          </Title>
+          <GoArrowLeft />
         </Link>
+        <Title>
+          {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+        </Title>
       </Header>
       <Tabs>
         <Tab isActive={priceMatch !== null}>
