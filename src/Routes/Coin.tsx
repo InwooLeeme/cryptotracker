@@ -13,6 +13,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchCoinInfo, fetchCoinPrice } from "../api";
 import { Helmet } from "react-helmet";
 import { GoArrowLeft } from "react-icons/go";
+import CandleStick from "./CandleStick";
 
 // Components
 const Container = styled.div`
@@ -68,8 +69,6 @@ const CoinItem = styled.div`
   justify-content: center;
   gap: 0.4rem;
 `;
-
-const Loader = styled.div``;
 
 const Tabs = styled.div`
   display: grid;
@@ -225,10 +224,10 @@ function Coin() {
       </Tabs>
       <Switch>
         <Route path={`/:coinId/price`}>
-          <Price />
+          <Price coinId={coinId} />
         </Route>
         <Route path={`/:coinId/chart`}>
-          <Chart coinId={coinId} />
+          <CandleStick coinId={coinId} />
         </Route>
       </Switch>
     </Container>
